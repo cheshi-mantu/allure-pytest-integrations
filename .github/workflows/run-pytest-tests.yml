@@ -1,4 +1,4 @@
-name: allurectl-jobrun-start
+name: run pytest tests
 
 on:
   workflow_dispatch:
