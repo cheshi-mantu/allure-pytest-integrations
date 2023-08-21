@@ -6,7 +6,7 @@ on:
       TEST_ENDPOINT:
         description: "Endpoint for tests"
         required: true
-        default: https://qaq.oka.qu.qu.qu
+        default: https://qa.url
       TEST_BROWSER:
         description: "Browser used for tests"
         required: true
@@ -40,13 +40,10 @@ jobs:
         with:
           allure-endpoint: https://demo.testops.cloud
           allure-token: ${{ secrets.ALLURE_TOKEN_DEMO }}
-          allure-project-id: 276
+          allure-project-id: 668
       - name: Run pytest tests
         run: | 
-          allurectl job-run start
-          printenv | grep "ALLURE\|GITHUB" > env.list
-          echo "Now, printing what we have in env.list"
-          cat env.list
+          allurectl watch -- pytest test --alluredir=${ALLURE_RESULTS}
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
           TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
