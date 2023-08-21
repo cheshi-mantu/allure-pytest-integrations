@@ -1,7 +1,8 @@
-# Example for pytest and allure framework
+# Integrations Allure Testops
+
+## Integration with GitHub workflows
 
 - pytest
 - allure-pytest
-- github actions
+- GitHub workflows
 
-also used in Azure Pipelines
