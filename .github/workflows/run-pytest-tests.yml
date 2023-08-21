@@ -42,7 +42,7 @@ jobs:
           allure-token: ${{ secrets.ALLURE_TOKEN_DEMO }}
           allure-project-id: 668
       - name: Run pytest tests
-        run: | 
+        run: 
           allurectl watch -- pytest test --alluredir=${ALLURE_RESULTS}
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
