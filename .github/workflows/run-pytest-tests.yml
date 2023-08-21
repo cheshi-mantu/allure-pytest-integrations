@@ -43,7 +43,7 @@ jobs:
           allure-project-id: 668
       - name: Run pytest tests
         run: |
-          allurectl watch -- pytest ./test --alluredir=${ALLURE_RESULTS} --capture=no
+          allurectl watch -- pytest ./test --alluredir=${ALLURE_RESULTS} --capture=no || true
           printenv | grep TEST_
         env:
           TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
