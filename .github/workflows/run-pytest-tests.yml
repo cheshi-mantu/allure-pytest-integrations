@@ -40,7 +40,7 @@ jobs:
         with:
           allure-endpoint: https://demo.testops.cloud
           allure-token: ${{ secrets.ALLURE_TOKEN_DEMO }}
-          allure-project-id: 701
+          allure-project-id: 734
       - name: Run pytest tests
         run: |
           allurectl watch -- pytest ./test --alluredir=${ALLURE_RESULTS} --capture=no || true
