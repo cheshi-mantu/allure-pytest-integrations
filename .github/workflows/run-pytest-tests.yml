@@ -7,11 +7,11 @@ on:
       GITHUB_TESTS_ENDPOINT:
         description: "System under test"
         required: true
-        default: https://qa.testbed.url
+        default: https://github.system.under.test
       GITHUB_TESTS_BROWSER:
         description: "Browser used for tests"
         required: true
-        default: chrome
+        default: edge
       ALLURE_JOB_RUN_ID:
         description: "ALLURE_JOB_RUN_ID service parameter. Leave blank."
         required: false
