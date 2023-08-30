@@ -48,4 +48,4 @@ jobs:
         env:
           GITHUB_TESTS_ENDPOINT: ${{ github.event.inputs.GITHUB_TESTS_ENDPOINT }}
           GITHUB_TESTS_BROWSER: ${{ github.event.inputs.GITHUB_TESTS_BROWSER }}
-          GITHUB_TESTS_BRANCH: $(GITHUB_REF_NAME)
+          GITHUB_TESTS_BRANCH: ${{ github.ref_name }} 
