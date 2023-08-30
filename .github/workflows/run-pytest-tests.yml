@@ -4,11 +4,11 @@ on:
   # push:
   workflow_dispatch:
     inputs:
-      TEST_ENDPOINT:
+      GITHUB_TESTS_ENDPOINT:
         description: "System under test"
         required: true
         default: https://qa.testbed.url
-      TEST_BROWSER:
+      GITHUB_TESTS_BROWSER:
         description: "Browser used for tests"
         required: true
         default: chrome
@@ -39,12 +39,12 @@ jobs:
         uses: allure-framework/setup-allurectl@v1
         with:
           allure-endpoint: https://demo.testops.cloud
-          allure-token: ${{ secrets.ALLURE_TOKEN_DEMO }}
-          allure-project-id: 734
+          allure-token: ${{ secrets.ALLURE_TOKEN }}
+          allure-project-id: 800
       - name: Run pytest tests
         run: |
           allurectl watch -- pytest ./test --alluredir=${ALLURE_RESULTS} --capture=no || true
           printenv | grep TEST_
         env:
-          TEST_ENDPOINT: ${{ github.event.inputs.TEST_ENDPOINT }}
-          TEST_BROWSER: ${{ github.event.inputs.TEST_BROWSER }}
+          TEST_ENDPOINT: ${{ github.event.inputs.GITHUB_TESTS_ENDPOINT }}
+          TEST_BROWSER: ${{ github.event.inputs.GITHUB_TESTS_BROWSER }}
