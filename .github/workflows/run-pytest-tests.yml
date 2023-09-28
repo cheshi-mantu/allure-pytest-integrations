@@ -30,7 +30,7 @@ jobs:
           pip install allure-pytest pytest
       - name: Run pytest tests
         run: |
-          pytest ./test
+          pytest ./test --alluredir=${ALLURE_RESULTS}
         env:
           GITHUB_TESTS_ENDPOINT: ${{ github.event.inputs.GITHUB_TESTS_ENDPOINT }}
           GITHUB_TESTS_BROWSER: ${{ github.event.inputs.GITHUB_TESTS_BROWSER }}
