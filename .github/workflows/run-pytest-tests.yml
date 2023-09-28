@@ -1,4 +1,4 @@
-name: run-and-upload-to-allure-testops
+name: run-pytest
 
 on:
   # push:
@@ -12,16 +12,9 @@ on:
         description: "Browser used for tests"
         required: true
         default: edge
-      ALLURE_JOB_RUN_ID:
-        description: "ALLURE_JOB_RUN_ID service parameter. Leave blank."
-        required: false
-      ALLURE_USERNAME:
-        description: "ALLURE_USERNAME service parameter. Leave blank"
-        required: false
 
 env:
   ALLURE_RESULTS: "allure-results"
-  ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
 
 jobs:
   all-tests:
@@ -35,17 +28,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install allure-pytest pytest
-      - name: install and configure allurectl
-        uses: allure-framework/setup-allurectl@v1
-        with:
-          allure-endpoint: https://demo.testops.cloud
-          allure-token: ${{ secrets.ALLURE_TOKEN }}
-          allure-project-id: 833
       - name: Run pytest tests
         run: |
-          allurectl watch -- pytest ./test --alluredir=${ALLURE_RESULTS} --capture=no || true
-          printenv | grep GITHUB_TESTS_
+          pytest ./test
         env:
           GITHUB_TESTS_ENDPOINT: ${{ github.event.inputs.GITHUB_TESTS_ENDPOINT }}
           GITHUB_TESTS_BROWSER: ${{ github.event.inputs.GITHUB_TESTS_BROWSER }}
-          GITHUB_TESTS_BRANCH: ${{ github.ref_name }} 
